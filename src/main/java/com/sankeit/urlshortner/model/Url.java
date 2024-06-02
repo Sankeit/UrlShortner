@@ -25,6 +25,9 @@ public class Url {
 			type = com.sankeit.urlshortner.dao.UrlKeyGenerator.class)
 	private String key;
 
+	@Column(name = "CUSTOM_KEY")
+	private String customKey;
+	
 	@Column(name = "URL")
 	private String url;
 

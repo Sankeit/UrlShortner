@@ -1,6 +1,5 @@
 package com.sankeit.urlshortner.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sankeit.urlshortner.dao.UrlDao;
@@ -11,25 +10,34 @@ public class UrlShortnerServiceImpl implements UrlShortnerService {
 
 	private UrlDao dao;
 	
-	@Autowired
 	public UrlShortnerServiceImpl(UrlDao dao) {
 		this.dao = dao;
 	}
 
 	@Override
 	public Url shorten(String longUrl) {
+		return shorten(longUrl, null);
+	}
+
+	@Override
+	public Url shorten(String longUrl, String customKey) {
 		 
 		Url url = new Url();
 		url.setUrl(longUrl);
+		url.setCustomKey(customKey);
 		
-		dao.save(url);
+		url = dao.save(url);
 		
-		return findByKey(url.getKey());
+		return url;
 	}
 
 	@Override
 	public Url findByKey(String key) {
-		return dao.findById(key).orElse(null);
+		return dao.findById(key).orElse(dao.findByCustomKey(key));
 	}
 
+	@Override
+	public Url findByLongUrl(String longUrl) {
+		return dao.findByUrl(longUrl);
+	}
 }

@@ -1,16 +1,12 @@
 package com.sankeit.urlshortner;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.sankeit.urlshortner.service.UrlShortnerService;
@@ -23,10 +19,11 @@ public class UrlShortnerApplication {
 	
 	public static void main(String[] args) {
 		SpringApplication.run(UrlShortnerApplication.class, args);
+		System.out.println("Application started!");
 	}
-	
-	@Bean
-	public SecurityFilterChain securityFilterChain(HttpSecurity httpSec) throws Exception {
+
+    @Bean
+    SecurityFilterChain securityFilterChain(HttpSecurity httpSec) throws Exception {
 		
 		httpSec.authorizeHttpRequests(customizer -> 
 		customizer

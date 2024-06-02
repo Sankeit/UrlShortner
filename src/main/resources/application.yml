@@ -10,7 +10,8 @@ spring:
     show-sql: true
 
 # Enable Hibernate DDL auto
-    hibernate.ddl-auto: none
+    hibernate:
+      ddl-auto: none
 
 # Enable H2 Console (optional)
   h2:
@@ -36,4 +37,6 @@ spring:
 
 logging:
   level:
-    root: error 
+    root: error
+    org.hibernate.SQL: trace
+    org.hibernate.orm.jdbc.bind: trace

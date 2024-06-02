@@ -1,6 +1,7 @@
 -- Create tables
 CREATE TABLE IF NOT EXISTS URL (
     url_key VARCHAR(20) PRIMARY KEY,
+	custom_key VARCHAR(20),
     url VARCHAR(1024) NOT NULL,
     created_on TIMESTAMP NOT NULL
 );
