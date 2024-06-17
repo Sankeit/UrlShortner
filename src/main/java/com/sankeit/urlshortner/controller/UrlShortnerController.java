@@ -40,6 +40,7 @@ public class UrlShortnerController {
 
 		if(urlObj == null) {
 			httpServletResponse.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			return;
 		}
 		
 		String targetUrl =  urlObj.getUrl();
@@ -127,4 +128,17 @@ public class UrlShortnerController {
 
 		return ResponseEntity.ok(url);
 	}
+	
+	@GetMapping("/Url")
+	public ResponseEntity<Url> getUrl(@RequestParam("key") String key) {
+		
+		Url url = service.findByKey(key);
+
+		if(url == null) {
+			return ResponseEntity.notFound().build();
+		}
+		
+		return ResponseEntity.ok(url);
+	}
+	
 }
