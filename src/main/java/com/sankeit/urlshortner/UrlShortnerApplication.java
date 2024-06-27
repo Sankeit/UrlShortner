@@ -3,6 +3,7 @@ package com.sankeit.urlshortner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
@@ -12,7 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import com.sankeit.urlshortner.service.UrlShortnerService;
 
 @SpringBootApplication
-public class UrlShortnerApplication {
+public class UrlShortnerApplication extends SpringBootServletInitializer {
 
 	@Autowired
 	UrlShortnerService service;
