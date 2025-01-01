@@ -29,6 +29,7 @@ public class UrlShortnerApplication extends SpringBootServletInitializer {
 		httpSec.authorizeHttpRequests(customizer -> 
 		customizer
 		.requestMatchers(HttpMethod.POST, "/shorten").authenticated()
+		.requestMatchers("/actuator/**").authenticated()
 		.anyRequest().permitAll()
 				);
 

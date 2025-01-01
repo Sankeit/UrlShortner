@@ -111,7 +111,7 @@ public class UrlShortnerController {
 			throw new RuntimeException("Invalid URL");
 		}
 		
-		if(customKey != null && (customKey.length() > 20 || customKey.length() < 6)) {
+		if(StringUtils.hasText(customKey) && (customKey.length() > 20 || customKey.length() < 6)) {
 			throw new RuntimeException("Key must be between 6 to 20 chars long");
 		}
 

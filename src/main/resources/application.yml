@@ -1,15 +1,28 @@
-# H2 Database Configuration
+logging:
+  level:
+    root: trace
+    org.hibernate.SQL: trace
+    org.hibernate.orm.jdbc.bind: trace
+    
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+    
 spring:
+# H2 Database Configuration
 #  datasource:
 #    url: jdbc:h2:mem:testdb
 #    driverClassName: org.h2.Driver
 #    username: sa
 #    password: Pass@4321
-  datasource:
-    url: jdbc:postgresql://192.168.0.106:5432/postgres
-    driverClassName: org.postgresql.Driver
-    username: postgres
-    password: Hola2024
+# Postgres Database Configuration
+#  datasource:
+#    url: jdbc:postgresql://192.168.193.43:5432/postgres
+#    driverClassName: org.postgresql.Driver
+#    username: postgres
+#    password: Hola2024
   jpa:
     database-platform: org.hibernate.dialect.H2Dialect
     show-sql: true
@@ -40,8 +53,39 @@ spring:
       name: laxman
       password: laxman123
 
+  profiles:
+    active: dev
+  
+---
+
+spring:      
+  config.activate.on-profile: prod
+  
+  datasource:
+    url: jdbc:postgresql://192.168.0.59:5432/postgres
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: Hola2024
+    
+logging:
+   level:
+      root: error
+      org.hibernate.SQL: trace
+      org.hibernate.orm.jdbc.bind: trace
+      
+---
+
+spring:
+  config.activate.on-profile: dev
+  
+  datasource:
+    url: jdbc:h2:mem:testdb
+    driverClassName: org.h2.Driver
+    username: sa
+    password: Pass@4321
+
 logging:
   level:
-    root: error
-    org.hibernate.SQL: trace
-    org.hibernate.orm.jdbc.bind: trace
+    root: info
+    org.hibernate.SQL: info
+    org.hibernate.orm.jdbc.bind: info
